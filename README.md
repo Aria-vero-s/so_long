@@ -8,7 +8,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Makefile](#makefile)
-- [Acknowledgements](#acknowledgements)
+- [MiniLibX](#minilibx)
 
 ## Introduction
 In **so_long**, the player navigates a simple 2D maze, collecting items and avoiding obstacles. The goal is to collect all the items and reach the exit to win the game. This project helps introduce graphical programming concepts while reinforcing knowledge of C and error handling.
@@ -64,7 +64,7 @@ The Makefile is designed to simplify the compilation process. Here are the main 
 - The `clean` and `fclean` rules help keep your workspace clean by removing object files and executables, respectively.
 - The `re` rule recompiles the project from scratch.
 
-## MiniLibX library
+## MiniLibX
 The  **MiniLibX** library was cloned from this repository (provided in the subject PDF).
 ```
 git clone https://github.com/42Paris/minilibx-linux.git mlx
