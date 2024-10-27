@@ -69,3 +69,12 @@ The  **MiniLibX** library was cloned from this repository (provided in the subje
 ```
 git clone https://github.com/42Paris/minilibx-linux.git mlx
 ```
+
+The images were found here:
+- [merchant-shade.itch.io](https://merchant-shade.itch.io/16x16-mini-world-sprites)
+
+The conversion from PNG to XML was made here:
+- [convertio.co](https://convertio.co/png-xpm/)
+
+The images were cropped here:
+- [iloveimg.com](https://www.iloveimg.com/)
