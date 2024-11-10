@@ -2,10 +2,10 @@
   <img src="so_long.png"/>
 </p>
 
-<h1 align="center" style="font-family: 'Arial', sans-serif; color: #AA7959; background-color: #EAE178; padding: 10px 20px; border-radius: 10px; border: 2px solid #f39c12;">so_long</h1>
-<h2 align="center" style="font-family: 'Arial', sans-serif; color: #6E967C; background-color: #C0D470; padding: 8px 15px; border-radius: 8px; border: 2px solid #6E967C;"><img src="player.png"/> 42 School Project <img src="player.png"/></h2>
+<h1 align="center">so_long</h1>
+<h2 align="center">42 School Project</h2>
 
-<p align="center" style="font-family: 'Arial', sans-serif; color: #6E967C; background-color: #C2E09A; padding: 20px; margin-top: 20px; border-radius: 10px; border: 1px solid #6E967C; text-align: center;">
+<p align="center">
   <b>so_long</b> is a beginner-level graphical game built as part of the curriculum at <b>ecole 42</b>. It is developed using the <b>MiniLibX</b> (MLX) framework, which provides an interface to work with windows, images, and events in a simple way. The game involves moving a character through a maze, collecting items, and reaching the exit.
 </p>
 
