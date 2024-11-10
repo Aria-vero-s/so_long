@@ -6,7 +6,7 @@
 #    By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/23 11:10:18 by asaulnie          #+#    #+#              #
-#    Updated: 2024/11/09 21:28:41 by asaulnie         ###   ########.fr        #
+#    Updated: 2024/11/10 18:40:12 by asaulnie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ INCLUDES = -Imlx -Ilibft -Iget_next_line -I/usr/include
 
 LIBS = -L./mlx -lmlx -L./libft -lft -L/usr/lib/X11 -lXext -lX11
 
-SRCS = so_long.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c ft_printf/ft_printf.c ft_printf/ft_itoa.c ft_printf/ft_strlen.c ft_printf/ft_itoa_base.c ft_printf/ft_printc.c ft_printf/ft_prints.c ft_printf/ft_printp.c ft_printf/ft_printd.c ft_printf/ft_printi.c ft_printf/ft_printu.c ft_printf/ft_printx.c ft_printf/ft_print88.c
+SRCS = sources/so_long.c sources/ft_check_arg.c sources/ft_display_images.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c ft_printf/ft_printf.c ft_printf/ft_itoa.c ft_printf/ft_strlen.c ft_printf/ft_itoa_base.c ft_printf/ft_printc.c ft_printf/ft_prints.c ft_printf/ft_printp.c ft_printf/ft_printd.c ft_printf/ft_printi.c ft_printf/ft_printu.c ft_printf/ft_printx.c ft_printf/ft_print88.c
 
 OBJS = $(SRCS:.c=.o)
 

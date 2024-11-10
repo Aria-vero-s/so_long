@@ -1,5 +1,8 @@
 {
 	"files.associations": {
-		"utility": "c"
+		"utility": "c",
+		"so_long.h": "c",
+		"get_next_line.h": "c",
+		"ft_printf.h": "c"
 	}
 }
