@@ -6,13 +6,13 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:18:48 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/09/28 16:03:16 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/11/09 21:30:44 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *str)
+size_t	gnl_strlen(const char *str)
 {
 	size_t	len;
 

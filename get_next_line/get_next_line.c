@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:18:41 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/09/30 14:59:37 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/11/09 21:30:51 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*append_to_line(char *line, const char *buffer, ssize_t len)
 	ssize_t	line_len;
 
 	if (line)
-		line_len = ft_strlen(line);
+		line_len = gnl_strlen(line);
 	else
 		line_len = 0;
 	new_line = malloc(line_len + len + 1);
