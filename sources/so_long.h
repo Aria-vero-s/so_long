@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 21:56:20 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/11/10 18:58:18 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:47:34 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@
 # define W (MAP_WIDTH * TILE_SIZE)
 # define H (MAP_HEIGHT * TILE_SIZE)
 
-// # define ERR_MAP_SIZE "Error: Inconsistent row size."
 // # define ERR_MULTIPLE_EXITS "Error: More than one exit found in the map."
 // # define ERR_MAP_INV "Error: Invalid character."
 // # define ERR_NO_P "Error: Missing player."
 # define ERR_ARG 1
+# define ERR_MAP_SIZE 2
+# define ERR_NO_MAP 3
 
 typedef struct s_img
 {
