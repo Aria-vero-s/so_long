@@ -6,76 +6,11 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:22:39 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/11/11 12:57:47 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/11/13 14:51:19 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	initialize_grid(t_data *data, const char *filename)
-{
-	int		fd;
-	int		i;
-	char	*line;
-
-	i = 0;
-	fd = open(filename, O_RDONLY);
-	if (fd < 0 || !data)
-		exit(1);
-	line = get_next_line(fd);
-	data->map.grid = malloc(data->map.height * sizeof(char *));
-	while (i < data->map.height)
-	{
-		data->map.grid[i] = line;
-		line = get_next_line(fd);
-		i++;
-	}
-	close(fd);
-	if (line)
-		free(line);
-}
-
-void	load_map_dimensions(int fd, t_data *data, size_t *max_width)
-{
-	size_t	line_count;
-	char	*line;
-
-	line_count = 0;
-	line = get_next_line(fd);
-	if (line != NULL)
-		*max_width = ft_strlen(line);
-	else
-		*max_width = 0;
-	while (line != NULL)
-	{
-		line_count++;
-		data->map.height = line_count;
-		if (*max_width != ft_strlen(line))
-		{
-			free(line);
-			ft_handle_error(ERR_MAP_SIZE, data);
-		}
-		if (ft_strlen(line) > *max_width)
-			*max_width = ft_strlen(line);
-
-		free(line);
-		line = get_next_line(fd);
-	}
-}
-
-void	load_map(const char *filename, t_data *data)
-{
-	size_t	max_width;
-	int		fd;
-
-	fd = open(filename, O_RDONLY);
-	if (fd < 0 || data == NULL)
-		ft_handle_error(ERR_NO_MAP, data);
-	load_map_dimensions(fd, data, &max_width);
-	close(fd);
-	data->map.width = max_width;
-	initialize_grid(data, filename);
-}
 
 void	free_map(t_data *data)
 {
@@ -84,11 +19,8 @@ void	free_map(t_data *data)
 	if (!data->map.grid)
 		return ;
 	i = 0;
-	printf("Data map height at time offreeing map is %d\n", data->map.height);
 	while (i < data->map.height)
 	{
-		printf("Freeing line %d with ptr %p, up to %d lines\n",
-			i, data->map.grid[i], data->map.height);
 		if (data->map.grid[i])
 			free(data->map.grid[i]);
 		i++;
@@ -131,14 +63,16 @@ int	render(t_data *data)
 	return (0);
 }
 
-void	ft_handle_error(int code, t_data *data)
+void	handle_error(int code, t_data *data)
 {
 	if (code == ERR_ARG)
-		ft_printf("%s\n", "Error: Not enough arguments.");
+		ft_printf("Error: Not enough arguments.\n");
 	else if (code == ERR_MAP_SIZE)
-		ft_printf("%s\n", "Error: Inconsistent row size.");
+		ft_printf("Error: Inconsistent row size.\n");
 	else if (code == ERR_NO_MAP)
-		ft_printf("%s\n", "Error: No map found.");
+		ft_printf("Error: No map found.\n");
+	else if (code == ERR_INV_CHAR)
+		ft_printf("Error: Invalid character.\n");
 	else
 		ft_printf("Error: Unknown error occurred.\n");
 	on_destroy(data, 1);
@@ -174,7 +108,7 @@ int	main(int argc, char **argv)
 	if (data.win_ptr == NULL)
 		return (1);
 	load_images(&data);
-	ft_check_arg(argc, &data);
+	check_arg(argc, &data);
 	load_map(argv[1], &data);
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);

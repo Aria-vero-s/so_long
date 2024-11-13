@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 21:56:20 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/11/11 12:47:34 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/11/13 14:51:28 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@
 # define H (MAP_HEIGHT * TILE_SIZE)
 
 // # define ERR_MULTIPLE_EXITS "Error: More than one exit found in the map."
-// # define ERR_MAP_INV "Error: Invalid character."
 // # define ERR_NO_P "Error: Missing player."
 # define ERR_ARG 1
 # define ERR_MAP_SIZE 2
 # define ERR_NO_MAP 3
+# define ERR_INV_CHAR 4
 
 typedef struct s_img
 {
@@ -60,11 +60,14 @@ typedef struct s_data
 	t_map	map;
 }	t_data;
 
-void	ft_check_arg(int argc, t_data *data);
+void	check_arg(int argc, t_data *data);
 void	load_images(t_data *data);
 void	display_image(t_data *data, int i, int x, int y);
-int		get_texture_index(char current_tile);
+int		get_texture_index(char current_tile, t_data *data);
 void	render_map(t_data *data, char **map, int width, int height);
-void	ft_handle_error(int code, t_data *data);
+void	handle_error(int code, t_data *data);
+void	load_map(const char *filename, t_data *data);
+void	load_map_dimensions(int fd, t_data *data, size_t *max_width);
+void	initialize_grid(t_data *data, const char *filename);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_display_images.c                                :+:      :+:    :+:   */
+/*   display_images.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:24:54 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/11/10 18:42:34 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/11/13 14:51:38 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	display_image(t_data *data, int i, int x, int y)
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->textures[i], x, y);
 }
 
-int	get_texture_index(char current_tile)
+int	get_texture_index(char current_tile, t_data *data)
 {
 	if (current_tile == 'C')
 		return (0);
@@ -50,6 +50,8 @@ int	get_texture_index(char current_tile)
 		return (3);
 	else if (current_tile == '0')
 		return (4);
+	else
+		handle_error(ERR_INV_CHAR, data);
 	return (-1);
 }
 
@@ -65,7 +67,7 @@ void	render_map(t_data *data, char **map, int width, int height)
 		x = 0;
 		while (x < width)
 		{
-			texture_index = get_texture_index(map[y][x]);
+			texture_index = get_texture_index(map[y][x], data);
 			if (texture_index != -1)
 				display_image(data, texture_index, x * TILE_SIZE, y * TILE_SIZE);
 			x++;
