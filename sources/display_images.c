@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:24:54 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/11/13 14:51:38 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/11/17 18:37:29 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	load_images(t_data *data)
 	int		height;
 
 	i = 0;
+	width = 32;
+	height = 32;
 	data->textures_path[0] = "assets/chest.xpm";
 	data->textures_path[1] = "assets/wall.xpm";
 	data->textures_path[2] = "assets/player.xpm";
@@ -50,7 +52,7 @@ int	get_texture_index(char current_tile, t_data *data)
 		return (3);
 	else if (current_tile == '0')
 		return (4);
-	else
+	else if (current_tile != '\n')
 		handle_error(ERR_INV_CHAR, data);
 	return (-1);
 }
