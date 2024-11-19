@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:22:39 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/11/17 18:39:49 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/11/19 17:22:25 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,16 @@ void	handle_error(int code, t_data *data)
 {
 	if (code == ERR_ARG)
 		ft_printf("Error: Not enough arguments.\n");
+	else if (code == ERR_EMPTY)
+		ft_printf("Error: Map empty.\n");
 	else if (code == ERR_MAP_SIZE)
 		ft_printf("Error: Inconsistent row size.\n");
 	else if (code == ERR_NO_MAP)
 		ft_printf("Error: No map found.\n");
 	else if (code == ERR_INV_CHAR)
 		ft_printf("Error: Invalid character.\n");
+	else if (code == ERR_NO_P)
+		ft_printf("Error: Missing Player.\n");
 	else
 		ft_printf("Error: Unknown error occurred.\n");
 	on_destroy(data, 1);
