@@ -6,13 +6,13 @@
 #    By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/23 11:10:18 by asaulnie          #+#    #+#              #
-#    Updated: 2024/11/13 14:40:39 by asaulnie         ###   ########.fr        #
+#    Updated: 2024/11/19 18:04:16 by asaulnie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-CC = gcc
+CC = gcc -g
 CFLAGS = -Wall -Wextra -Werror -ggdb3
 
 INCLUDES = -Imlx -Ilibft -Iget_next_line -I/usr/include

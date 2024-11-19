@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 21:56:20 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/11/19 17:19:48 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/11/19 19:24:40 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define ERR_INV_CHAR 4
 # define ERR_NO_P 5
 # define ERR_EMPTY 5
+# define ERR_MISSING_W 6
 
 typedef struct s_img
 {
@@ -69,9 +70,9 @@ int		get_texture_index(char current_tile, t_data *data);
 void	render_map(t_data *data, char **map, int width, int height);
 void	handle_error(int code, t_data *data);
 void	load_map(const char *filename, t_data *data);
-void	load_map_dimensions(int fd, t_data *data, size_t *max_width);
+void	load_map_dimensions(int fd, t_data *data);
 void	initialize_grid(t_data *data, const char *filename);
-void	flood_fill(char **tab, int width, int height, int x, int y);
-void	fill(char **tab, int width, int height, int x, int y, char c);
+void	flood_fill(char **tab, int width, int height, int x, int y, t_data *data);
+void	fill(char **tab, int width, int height, int x, int y, char c, t_data *data);
 
 #endif
