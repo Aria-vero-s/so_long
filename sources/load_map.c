@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 14:41:10 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/11/19 21:40:44 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:44:36 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,28 @@ void	fill(char **tab, int width, int height, int x, int y, int *player, int *exi
 
 void	flood_fill(char **tab, int width, int height, int x, int y, t_data *data)
 {
-	int player;
-	int exit;
+	int		player;
+	int		exit;
+	char	**copy;
+	int		i;
 
 	player = 0;
 	exit = 0;
-	fill(tab, width, height, x, y, &player, &exit);
+	copy = malloc(height * sizeof(char *));
+	i = 0;
+	while (i < height)
+	{
+		copy[i] = strdup(tab[i]);
+		i++;
+	}
+	fill(copy, width, height, x, y, &player, &exit);
+	i = 0;
+	while (i < height)
+	{
+		free(copy[i]);
+		i++;
+	}
+	free(copy);
 	if (!player || !exit)
 		handle_error(ERR_NOT_POSS, data);
 }
