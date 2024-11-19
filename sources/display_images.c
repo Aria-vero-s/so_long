@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:24:54 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/11/17 18:37:29 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:18:23 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	get_texture_index(char current_tile, t_data *data)
 	else if (current_tile == 'E')
 		return (3);
 	else if (current_tile == '0')
+		return (4);
+	else if (current_tile == 'V')
 		return (4);
 	else if (current_tile != '\n')
 		handle_error(ERR_INV_CHAR, data);

@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 21:56:20 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/11/19 19:24:40 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:38:44 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define ERR_NO_P 5
 # define ERR_EMPTY 5
 # define ERR_MISSING_W 6
+# define ERR_NOT_POSS 7
 
 typedef struct s_img
 {
@@ -73,6 +74,6 @@ void	load_map(const char *filename, t_data *data);
 void	load_map_dimensions(int fd, t_data *data);
 void	initialize_grid(t_data *data, const char *filename);
 void	flood_fill(char **tab, int width, int height, int x, int y, t_data *data);
-void	fill(char **tab, int width, int height, int x, int y, char c, t_data *data);
+void	fill(char **tab, int width, int height, int x, int y, int *player, int *exit);
 
 #endif

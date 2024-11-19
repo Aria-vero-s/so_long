@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 14:41:10 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/11/19 19:27:59 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:40:44 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,46 +64,46 @@ void	load_map_dimensions(int fd, t_data *data)
 	}
 }
 
-void	fill(char **tab, int width, int height, int x, int y, char c, t_data *data)
+void	fill(char **tab, int width, int height, int x, int y, int *player, int *exit)
 {
-	if (x < 0 || y < 0 || x >= width || y >= height || tab[y][x] != c)
-		return ;
-	tab[y][x] = 'F';
-	if (tab[y][x] != 'F')
-		handle_error(ERR_MISSING_W, data);
-	printf("tab[y][x]:%c\n", tab[y][x]);
-	fill(tab, width, height, x, y + 1, c, data);
-	fill(tab, width, height, x, y - 1, c, data);
-	fill(tab, width, height, x + 1, y, c, data);
-	fill(tab, width, height, x - 1, y, c, data);
+	if (x < 0 || y < 0 || x >= width || y >= height || tab[y][x] == '1' || tab[y][x] == 'V')
+		return;
+	if (tab[y][x] == 'P')
+		*player = 1;
+	else if (tab[y][x] == 'E')
+		*exit = 1;
+	tab[y][x] = 'V';
+	fill(tab, width, height, x, y + 1, player, exit);
+	fill(tab, width, height, x, y - 1, player, exit);
+	fill(tab, width, height, x + 1, y, player, exit);
+	fill(tab, width, height, x - 1, y, player, exit);
 }
 
 void	flood_fill(char **tab, int width, int height, int x, int y, t_data *data)
 {
-	char	c;
+	int player;
+	int exit;
 
-	c = tab[y][x];
-	printf("c:%c, width:%d, height:%d, x:%d, y:%d\n", c, width, height, x, y);
-	fill(tab, width, height, x, y, c, data);
+	player = 0;
+	exit = 0;
+	fill(tab, width, height, x, y, &player, &exit);
+	if (!player || !exit)
+		handle_error(ERR_NOT_POSS, data);
 }
 
 void	load_map(const char *filename, t_data *data)
 {
 	int		fd;
 	int		i;
-	int		x;
-	int		y;
 
 	fd = open(filename, O_RDONLY);
 	i = 0;
-	x = 0;
-	y = 0;
 	if (fd < 0 || data == NULL)
 		handle_error(ERR_NO_MAP, data);
 	load_map_dimensions(fd, data);
 	close(fd);
 	initialize_grid(data, filename);
-	flood_fill(data->map.grid, data->map.width, data->map.height, x, y, data);
+	flood_fill(data->map.grid, data->map.width, data->map.height, 1, 1, data);
 	while (i < data->map.height)
 	{
 		printf("%s", data->map.grid[i]);
