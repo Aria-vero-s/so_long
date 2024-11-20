@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:22:39 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/11/20 18:52:21 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/11/20 18:59:06 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,19 +76,17 @@ void	handle_error(int code, t_data *data)
 	else if (code == ERR_INV_CHAR)
 		ft_printf("Error: Invalid character.\n");
 	else if (code == ERR_NO_P)
-		ft_printf("Error: Missing Player.\n");
-	else if (code == ERR_NO_P)
-		ft_printf("Error: Missing wall.\n");
+		ft_printf("Error: Missing player.\n");
+	else if (code == ERR_NO_E)
+		ft_printf("Error: Missing exit.\n");
 	else if (code == ERR_NOT_POSS)
 		ft_printf("Error: No reachable exit.\n");
 	else if (code == ERR_MULTI_P)
 		ft_printf("Error: More than one player.\n");
 	else if (code == ERR_MULTI_E)
 		ft_printf("Error: More than one exit.\n");
-	else if (code == ERR_NO_P)
-		ft_printf("Error: Map has no player.\n");
 	else
-		ft_printf("Error: Map has no exit.\n");
+		ft_printf("Error: Unknown error.\n");
 	on_destroy(data, 1);
 }
 
