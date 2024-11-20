@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 14:41:10 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/11/20 17:49:38 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/11/20 18:45:36 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	flood_fill(char **tab, int width, int height, int x, int y, t_data *data)
 		handle_error(ERR_NOT_POSS, data);
 }
 
-void	check_duplicate_p(t_data *data)
+void	check_player(t_data *data)
 {
 	int	i;
 	int	j;
@@ -120,17 +120,19 @@ void	check_duplicate_p(t_data *data)
 		j = 0;
 		while (j < data->map.width)
 		{
-			if (player == 2)
-				handle_error(ERR_MULTI_P, data);
 			if (data->map.grid[i][j] == 'P')
 				player++;
+			if (player == 2)
+				handle_error(ERR_MULTI_P, data);
 			j++;
 		}
 		i++;
 	}
+	if (player == 0)
+		handle_error(ERR_NO_P, data);
 }
 
-void	check_duplicate_e(t_data *data)
+void	check_exit(t_data *data)
 {
 	int	i;
 	int	j;
@@ -143,14 +145,16 @@ void	check_duplicate_e(t_data *data)
 		j = 0;
 		while (j < data->map.width)
 		{
-			if (exit == 2)
-				handle_error(ERR_MULTI_E, data);
 			if (data->map.grid[i][j] == 'E')
 				exit++;
+			if (exit == 2)
+				handle_error(ERR_MULTI_E, data);
 			j++;
 		}
 		i++;
 	}
+	if (exit == 0)
+		handle_error(ERR_NO_E, data);
 }
 
 void	load_map(const char *filename, t_data *data)
@@ -163,7 +167,7 @@ void	load_map(const char *filename, t_data *data)
 	load_map_dimensions(fd, data);
 	close(fd);
 	initialize_grid(data, filename);
-	check_duplicate_p(data);
-	check_duplicate_e(data);
+	check_player(data);
+	check_exit(data);
 	flood_fill(data->map.grid, data->map.width, data->map.height, 1, 1, data);
 }
