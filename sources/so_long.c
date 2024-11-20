@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:22:39 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/11/19 19:34:30 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/11/20 17:04:45 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,10 @@ void	handle_error(int code, t_data *data)
 		ft_printf("Error: Missing wall.\n");
 	else if (code == ERR_NOT_POSS)
 		ft_printf("Error: No reachable exit.\n");
+	else if (code == ERR_MULTI_P)
+		ft_printf("Error: More than one player.\n");
+	else if (code == ERR_MULTI_E)
+		ft_printf("Error: More than one exit.\n");
 	else
 		ft_printf("Error: Unknown error occurred.\n");
 	on_destroy(data, 1);

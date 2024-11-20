@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 14:41:10 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/11/19 21:44:36 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/11/20 17:49:38 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,22 +107,63 @@ void	flood_fill(char **tab, int width, int height, int x, int y, t_data *data)
 		handle_error(ERR_NOT_POSS, data);
 }
 
+void	check_duplicate_p(t_data *data)
+{
+	int	i;
+	int	j;
+	int	player;
+
+	i = 0;
+	player = 0;
+	while (i < data->map.height)
+	{
+		j = 0;
+		while (j < data->map.width)
+		{
+			if (player == 2)
+				handle_error(ERR_MULTI_P, data);
+			if (data->map.grid[i][j] == 'P')
+				player++;
+			j++;
+		}
+		i++;
+	}
+}
+
+void	check_duplicate_e(t_data *data)
+{
+	int	i;
+	int	j;
+	int	exit;
+
+	i = 0;
+	exit = 0;
+	while (i < data->map.height)
+	{
+		j = 0;
+		while (j < data->map.width)
+		{
+			if (exit == 2)
+				handle_error(ERR_MULTI_E, data);
+			if (data->map.grid[i][j] == 'E')
+				exit++;
+			j++;
+		}
+		i++;
+	}
+}
+
 void	load_map(const char *filename, t_data *data)
 {
 	int		fd;
-	int		i;
 
 	fd = open(filename, O_RDONLY);
-	i = 0;
 	if (fd < 0 || data == NULL)
 		handle_error(ERR_NO_MAP, data);
 	load_map_dimensions(fd, data);
 	close(fd);
 	initialize_grid(data, filename);
+	check_duplicate_p(data);
+	check_duplicate_e(data);
 	flood_fill(data->map.grid, data->map.width, data->map.height, 1, 1, data);
-	while (i < data->map.height)
-	{
-		printf("%s", data->map.grid[i]);
-		i++;
-	}
 }

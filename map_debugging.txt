@@ -1,0 +1,7 @@
+	i = 0;
+
+	while (i < data->map.height)
+	{
+		printf("%s", data->map.grid[i]);
+		i++;
+	}
