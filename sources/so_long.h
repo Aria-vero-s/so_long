@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 21:56:20 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/11/20 19:00:00 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:01:53 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,18 @@
 # define ERR_NO_E 11
 # define ERR_NO_C 12
 
+#define KEY_W 119
+#define KEY_A 97
+#define KEY_S 115
+#define KEY_D 100
+
+#define KEY_UP 119
+#define KEY_LEFT 97
+#define KEY_DOWN 115
+#define KEY_RIGHT 100
+
+#define KEY_ESC 53
+
 typedef struct s_img
 {
 	void	*mlx_img;
@@ -66,6 +78,8 @@ typedef struct s_data
 	void	*textures[5];
 	void	*textures_path[5];
 	t_map	map;
+	int		player_x;
+	int		player_y;
 }	t_data;
 
 void	check_arg(int argc, t_data *data);
@@ -81,5 +95,9 @@ void	flood_fill(char **tab, int width, int height, int x, int y, t_data *data);
 void	fill(char **tab, int width, int height, int x, int y, int *player, int *exit);
 void	check_player(t_data *data);
 void	check_exit(t_data *data);
+
+void	find_player_start(t_data *data);
+void	move_player(t_data *data, int new_x, int new_y);
+void	draw_tile(t_data *data, int x, int y);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:24:54 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/11/20 17:40:42 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:06:32 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,13 @@ void	render_map(t_data *data, char **map, int width, int height)
 		}
 		y++;
 	}
+}
+
+void	draw_tile(t_data *data, int x, int y)
+{
+	int	texture_index;
+
+	texture_index = get_texture_index(data->map.grid[y][x], data);
+	if (texture_index != -1)
+		display_image(data, texture_index, x * TILE_SIZE, y * TILE_SIZE);
 }
