@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:24:54 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/12/19 13:06:32 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:19:47 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,21 @@
 void	load_images(t_data *data)
 {
 	int		i;
-	int		width;
-	int		height;
+	int		w;
+	int		h;
 
 	i = 0;
-	width = 32;
-	height = 32;
-	data->textures_path[0] = "assets/chest.xpm";
-	data->textures_path[1] = "assets/wall.xpm";
-	data->textures_path[2] = "assets/player.xpm";
-	data->textures_path[3] = "assets/exit.xpm";
-	data->textures_path[4] = "assets/empty.xpm";
+	w = 32;
+	h = 32;
+	data->path[0] = "assets/chest.xpm";
+	data->path[1] = "assets/wall.xpm";
+	data->path[2] = "assets/player.xpm";
+	data->path[3] = "assets/exit.xpm";
+	data->path[4] = "assets/empty.xpm";
 	while (i < 5)
 	{
-		data->textures[i] = mlx_xpm_file_to_image(data->mlx_ptr, data->textures_path[i], &width, &height);
+		data->textures[i]
+			= mlx_xpm_file_to_image(data->mlx_ptr, data->path[i], &w, &h);
 		if (data->textures[i] == NULL)
 			exit (1);
 		i++;
@@ -37,7 +38,8 @@ void	load_images(t_data *data)
 
 void	display_image(t_data *data, int i, int x, int y)
 {
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->textures[i], x, y);
+	mlx_put_image_to_window
+		(data->mlx_ptr, data->win_ptr, data->textures[i], x, y);
 }
 
 int	get_texture_index(char current_tile, t_data *data)
@@ -71,7 +73,8 @@ void	render_map(t_data *data, char **map, int width, int height)
 		{
 			texture_index = get_texture_index(map[y][x], data);
 			if (texture_index != -1)
-				display_image(data, texture_index, x * TILE_SIZE, y * TILE_SIZE);
+				display_image
+				(data, texture_index, x * TILE_SIZE, y * TILE_SIZE);
 			x++;
 		}
 		y++;

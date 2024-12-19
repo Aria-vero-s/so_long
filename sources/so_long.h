@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 21:56:20 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/12/19 13:01:53 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/12/19 14:27:46 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@
 # define TILE_SIZE 32
 # define W (MAP_WIDTH * TILE_SIZE)
 # define H (MAP_HEIGHT * TILE_SIZE)
-
-// # define ERR_MULTIPLE_EXITS "Error: More than one exit found in the map."
-// # define ERR_NO_P "Error: Missing player."
 # define ERR_ARG 1
 # define ERR_MAP_SIZE 2
 # define ERR_NO_MAP 3
@@ -42,18 +39,15 @@
 # define ERR_NO_P 10
 # define ERR_NO_E 11
 # define ERR_NO_C 12
-
-#define KEY_W 119
-#define KEY_A 97
-#define KEY_S 115
-#define KEY_D 100
-
-#define KEY_UP 119
-#define KEY_LEFT 97
-#define KEY_DOWN 115
-#define KEY_RIGHT 100
-
-#define KEY_ESC 53
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_UP 119
+# define KEY_LEFT 97
+# define KEY_DOWN 115
+# define KEY_RIGHT 100
+# define KEY_ESC 53
 
 typedef struct s_img
 {
@@ -76,12 +70,21 @@ typedef struct s_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*textures[5];
-	void	*textures_path[5];
+	void	*path[5];
 	t_map	map;
 	int		player_x;
 	int		player_y;
 }	t_data;
 
+typedef struct s_fill_params {
+    int *player;
+    int *exit;
+    t_data *data;
+} t_fill_params;
+
+int		render(t_data *data);
+int		handle_keypress(int key, t_data *data);
+int		on_destroy(t_data *data, int exit_status);
 void	check_arg(int argc, t_data *data);
 void	load_images(t_data *data);
 void	display_image(t_data *data, int i, int x, int y);
@@ -91,13 +94,15 @@ void	handle_error(int code, t_data *data);
 void	load_map(const char *filename, t_data *data);
 void	load_map_dimensions(int fd, t_data *data);
 void	initialize_grid(t_data *data, const char *filename);
-void	flood_fill(char **tab, int width, int height, int x, int y, t_data *data);
-void	fill(char **tab, int width, int height, int x, int y, int *player, int *exit);
+void	flood_fill(char **tab, int x, int y, t_data *data);
+void	fill(char **tab, t_fill_params *params, int x, int y);
 void	check_player(t_data *data);
 void	check_exit(t_data *data);
 
 void	find_player_start(t_data *data);
 void	move_player(t_data *data, int new_x, int new_y);
 void	draw_tile(t_data *data, int x, int y);
+void	free_map_copy(char **copy, int height);
+char	**copy_map(char **tab, int height);
 
 #endif

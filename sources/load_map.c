@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 14:41:10 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/11/20 19:00:15 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/12/19 14:17:49 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,49 +62,6 @@ void	load_map_dimensions(int fd, t_data *data)
 		free(line);
 		line = get_next_line(fd);
 	}
-}
-
-void	fill(char **tab, int width, int height, int x, int y, int *player, int *exit)
-{
-	if (x < 0 || y < 0 || x >= width || y >= height || tab[y][x] == '1' || tab[y][x] == 'V')
-		return;
-	if (tab[y][x] == 'P')
-		*player = 1;
-	else if (tab[y][x] == 'E')
-		*exit = 1;
-	tab[y][x] = 'V';
-	fill(tab, width, height, x, y + 1, player, exit);
-	fill(tab, width, height, x, y - 1, player, exit);
-	fill(tab, width, height, x + 1, y, player, exit);
-	fill(tab, width, height, x - 1, y, player, exit);
-}
-
-void	flood_fill(char **tab, int width, int height, int x, int y, t_data *data)
-{
-	int		player;
-	int		exit;
-	char	**copy;
-	int		i;
-
-	player = 0;
-	exit = 0;
-	copy = malloc(height * sizeof(char *));
-	i = 0;
-	while (i < height)
-	{
-		copy[i] = strdup(tab[i]);
-		i++;
-	}
-	fill(copy, width, height, x, y, &player, &exit);
-	i = 0;
-	while (i < height)
-	{
-		free(copy[i]);
-		i++;
-	}
-	free(copy);
-	if (!player || !exit)
-		handle_error(ERR_NOT_POSS, data);
 }
 
 void	check_player(t_data *data)
@@ -169,5 +126,5 @@ void	load_map(const char *filename, t_data *data)
 	initialize_grid(data, filename);
 	check_player(data);
 	check_exit(data);
-	flood_fill(data->map.grid, data->map.width, data->map.height, 1, 1, data);
+	flood_fill(data->map.grid, 1, 1, data);
 }
