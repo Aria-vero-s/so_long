@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:22:39 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/12/21 17:50:14 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/12/21 18:03:35 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,11 @@ void	data_setter(t_data *data)
 
 	i = 0;
 	data->mlx_ptr = mlx_init();
-    if (data->mlx_ptr == NULL)
-    {
-        ft_printf("Error: mlx failed.\n");
-        exit(1);
-    }
+	if (data->mlx_ptr == NULL)
+	{
+		ft_printf("Error: mlx failed.\n");
+		exit(1);
+	}
 	data->win_ptr = NULL;
 	while (i < 5)
 	{
