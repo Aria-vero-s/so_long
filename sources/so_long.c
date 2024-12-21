@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:22:39 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/12/21 15:41:58 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/12/21 17:50:14 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,10 @@ void	handle_error(int code, t_data *data)
 		ft_printf("Error: More than one player.\n");
 	else if (code == ERR_MULTI_E)
 		ft_printf("Error: More than one exit.\n");
-	else
-		ft_printf("Error: Unknown error.\n");
+	else if (code == ERR_EXT)
+		ft_printf("Error: map extension invalid.\n");
+	else if (code == ERR_MAP_BIG)
+		ft_printf("Error: map exceeds window size.\n");
 	on_destroy(data, 1);
 }
 
@@ -80,7 +82,12 @@ void	data_setter(t_data *data)
 	int	i;
 
 	i = 0;
-	data->mlx_ptr = NULL;
+	data->mlx_ptr = mlx_init();
+    if (data->mlx_ptr == NULL)
+    {
+        ft_printf("Error: mlx failed.\n");
+        exit(1);
+    }
 	data->win_ptr = NULL;
 	while (i < 5)
 	{
@@ -105,14 +112,14 @@ int	main(int argc, char **argv)
 	int		h;
 
 	data_setter(&data);
-	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
 		return (1);
 	load_images(&data);
-	check_arg(argc, &data);
+	check_arg(argc, argv, &data);
 	load_map(argv[1], &data);
 	w = (data.map.width - 1) * TILE_SIZE;
 	h = data.map.height * TILE_SIZE;
+	check_map_size(&data, w, h);
 	data.win_ptr = mlx_new_window(data.mlx_ptr, w, h, "so_long");
 	if (data.win_ptr == NULL)
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:21:00 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/12/21 15:27:25 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/12/21 16:01:34 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	count_collectibles(t_data *data)
 	int	y;
 	int	x;
 
-	data->total_chests = 0;
-	data->collected_count = 0;
 	y = 0;
 	while (y < data->map.height)
 	{

@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 21:56:20 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/12/21 15:29:55 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/12/21 17:48:45 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,12 @@
 # define ERR_NO_P 10
 # define ERR_NO_E 11
 # define ERR_NO_C 12
+# define ERR_EXT 13
+# define ERR_MAP_BIG 14
 # define KEY_W 119
 # define KEY_A 97
 # define KEY_S 115
 # define KEY_D 100
-# define KEY_UP 119
-# define KEY_LEFT 97
-# define KEY_DOWN 115
-# define KEY_RIGHT 100
-# define KEY_ESC 53
 
 typedef struct s_img
 {
@@ -85,7 +82,7 @@ typedef struct s_fill_params
 int		render(t_data *data);
 int		handle_keypress(int key, t_data *data);
 int		on_destroy(t_data *data, int exit_status);
-void	check_arg(int argc, t_data *data);
+void	check_arg(int argc, char **argv, t_data *data);
 void	load_images(t_data *data);
 void	display_image(t_data *data, int i, int x, int y);
 int		get_texture_index(char current_tile, t_data *data);
@@ -98,6 +95,7 @@ void	flood_fill(char **tab, int x, int y, t_data *data);
 void	fill(char **tab, t_fill_params *params, int x, int y);
 void	check_player(t_data *data);
 void	check_exit(t_data *data);
+void	data_setter(t_data *data);
 
 void	find_player_start(t_data *data);
 void	move_player(t_data *data, int new_x, int new_y);
@@ -106,5 +104,6 @@ void	free_map_copy(char **copy, int height);
 char	**copy_map(char **tab, int height);
 void	count_collectibles(t_data *data);
 int		is_valid_move(t_data *data, int x, int y);
+void	check_map_size(t_data *data, int map_width, int map_height);
 
 #endif
