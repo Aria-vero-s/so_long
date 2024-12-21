@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 21:56:20 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/12/19 14:27:46 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/12/21 15:29:55 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,7 @@
 # include "libft.h"
 # include "../get_next_line/get_next_line.h"
 # include "../ft_printf/ft_printf.h"
-# define MAP_WIDTH 18
-# define MAP_HEIGHT 7
 # define TILE_SIZE 32
-# define W (MAP_WIDTH * TILE_SIZE)
-# define H (MAP_HEIGHT * TILE_SIZE)
 # define ERR_ARG 1
 # define ERR_MAP_SIZE 2
 # define ERR_NO_MAP 3
@@ -74,13 +70,17 @@ typedef struct s_data
 	t_map	map;
 	int		player_x;
 	int		player_y;
+	int		total_chests;
+	int		collected_count;
+	int		steps;
 }	t_data;
 
-typedef struct s_fill_params {
-    int *player;
-    int *exit;
-    t_data *data;
-} t_fill_params;
+typedef struct s_fill_params
+{
+	int		*player;
+	int		*exit;
+	t_data	*data;
+}	t_fill_params;
 
 int		render(t_data *data);
 int		handle_keypress(int key, t_data *data);
@@ -104,5 +104,7 @@ void	move_player(t_data *data, int new_x, int new_y);
 void	draw_tile(t_data *data, int x, int y);
 void	free_map_copy(char **copy, int height);
 char	**copy_map(char **tab, int height);
+void	count_collectibles(t_data *data);
+int		is_valid_move(t_data *data, int x, int y);
 
 #endif

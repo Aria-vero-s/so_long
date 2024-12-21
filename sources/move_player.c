@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:21:00 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/12/19 14:22:46 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/12/21 15:27:25 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,51 @@ int	render(t_data *data)
 	return (0);
 }
 
+void	count_collectibles(t_data *data)
+{
+	int	y;
+	int	x;
+
+	data->total_chests = 0;
+	data->collected_count = 0;
+	y = 0;
+	while (y < data->map.height)
+	{
+		x = 0;
+		while (x < data->map.width)
+		{
+			if (data->map.grid[y][x] == 'C')
+				data->total_chests++;
+			x++;
+		}
+		y++;
+	}
+}
+
 void	move_player(t_data *data, int new_x, int new_y)
 {
-	if (data->map.grid[new_y][new_x] == '0')
+	char	target;
+
+	target = data->map.grid[new_y][new_x];
+	if (target == '0' || target == 'C')
 	{
+		if (target == 'C')
+		{
+			data->map.grid[new_y][new_x] = '0';
+			data->collected_count++;
+		}
 		data->map.grid[data->player_y][data->player_x] = '0';
 		data->map.grid[new_y][new_x] = 'P';
 		data->player_x = new_x;
 		data->player_y = new_y;
+		data->steps++;
+		ft_printf("Steps: %d\n", data->steps);
 		render(data);
+	}
+	else if (target == 'E')
+	{
+		if (data->collected_count == data->total_chests)
+			on_destroy(data, 0);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:22:39 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/12/19 14:23:27 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/12/21 15:28:57 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,22 +90,32 @@ void	data_setter(t_data *data)
 	data->map.width = 0;
 	data->map.height = 0;
 	data->map.grid = NULL;
+	data->collected_count = 0;
+	data->total_chests = 0;
+	data->player_x = 0;
+	data->player_y = 0;
+	data->steps = 0;
 }
 
 int	main(int argc, char **argv)
 {
 	t_data	data;
+	int		w;
+	int		h;
 
 	data_setter(&data);
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
 		return (1);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, W, H, "so_long");
-	if (data.win_ptr == NULL)
-		return (1);
 	load_images(&data);
 	check_arg(argc, &data);
 	load_map(argv[1], &data);
+	w = (data.map.width - 1) * TILE_SIZE;
+	h = data.map.height * TILE_SIZE;
+	data.win_ptr = mlx_new_window(data.mlx_ptr, w, h, "so_long");
+	if (data.win_ptr == NULL)
+		return (1);
+	count_collectibles(&data);
 	find_player_start(&data);
 	render(&data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
