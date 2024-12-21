@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 21:56:20 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/12/21 18:35:21 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/12/21 19:48:27 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@
 # define ERR_NO_C 12
 # define ERR_EXT 13
 # define ERR_MAP_BIG 14
-# define ERR_NO_IMG 25
+# define ERR_NO_IMG 15
+# define ERR_C_UNREACH 16
 # define KEY_W 119
 # define KEY_A 97
 # define KEY_S 115
@@ -77,6 +78,7 @@ typedef struct s_fill_params
 {
 	int		*player;
 	int		*exit;
+	int		*collected;
 	t_data	*data;
 }	t_fill_params;
 
@@ -108,5 +110,7 @@ void	count_collectibles(t_data *data);
 int		is_valid_move(t_data *data, int x, int y);
 void	check_map_size(t_data *data, int map_width, int map_height);
 void	you_won(t_data *data);
+void	start_game(t_data *data);
+int		total_collectibles(char **map, int width, int height);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:22:39 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/12/21 18:23:06 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/12/21 19:27:20 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	handle_error(int code, t_data *data)
 		ft_printf("Error: More than one exit.\n");
 	else if (code == ERR_NO_IMG)
 		ft_printf("Error: Images not accessible.\n");
+	else if (code == ERR_C_UNREACH)
+		ft_printf("Error: One or more collectible is unreachable.\n");
 	on_destroy(data, 1);
 }
 

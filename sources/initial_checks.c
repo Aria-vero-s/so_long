@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_arg.c                                        :+:      :+:    :+:   */
+/*   initial_checks.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:19:34 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/12/21 18:25:11 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/12/21 20:27:59 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,16 @@
 
 void	check_arg(int argc, char **argv, t_data *data)
 {
-	int	len;
-	int	i;
+	const char	*filename;
+	const char	*last_dot;
 
-	i = 0;
 	if (argc != 2)
-	{
-		handle_error(ERR_ARG, data);
-		return ;
-	}
-	len = ft_strlen(argv[1]);
-	if (len < 4 || ft_strncmp(argv[1] + len - 4, ".ber", len) != 0)
-	{
-		handle_error(ERR_EXT, data);
-		return ;
-	}
-	while (i < len - 4)
-	{
-		if (argv[1][i] == '.')
-		{
-			handle_error(ERR_EXT, data);
-			return ;
-		}
-		i++;
-	}
+		handle_error2(ERR_ARG, data);
+	filename = argv[1];
+	last_dot = strrchr(filename, '.');
+	if (!last_dot || strcmp(last_dot, ".ber") != 0
+		|| strchr(filename, '.') != last_dot)
+		handle_error2(ERR_EXT, data);
 }
 
 void	check_map_size(t_data *data, int map_width, int map_height)
@@ -47,7 +33,7 @@ void	check_map_size(t_data *data, int map_width, int map_height)
 
 	mlx_get_screen_size(data->mlx_ptr, &screen_width, &screen_height);
 	if (map_width > screen_width || map_height > screen_height)
-		handle_error(ERR_MAP_BIG, data);
+		handle_error2(ERR_MAP_BIG, data);
 }
 
 void	handle_error2(int code, t_data *data)
@@ -59,4 +45,26 @@ void	handle_error2(int code, t_data *data)
 	else if (code == ERR_MAP_BIG)
 		ft_printf("Error: Map exceeds window size.\n");
 	on_destroy(data, 1);
+}
+
+int	total_collectibles(char **map, int width, int height)
+{
+	int	count;
+	int	y;
+	int	x;
+
+	count = 0;
+	y = 0;
+	while (y < height)
+	{
+		x = 0;
+		while (x < width)
+		{
+			if (map[y][x] == 'C')
+				count++;
+			x++;
+		}
+		y++;
+	}
+	return (count);
 }
