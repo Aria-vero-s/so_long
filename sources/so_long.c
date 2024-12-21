@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:22:39 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/12/21 15:28:57 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/12/21 15:41:58 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int	on_destroy(t_data *data, int exit_status)
 		i++;
 	}
 	free_map(data);
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	if (data->win_ptr != NULL)
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
 	data->mlx_ptr = NULL;
