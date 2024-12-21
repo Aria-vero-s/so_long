@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:22:39 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/12/21 18:03:35 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/12/21 18:23:06 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int	on_destroy(t_data *data, int exit_status)
 	i = 0;
 	while (i < 5)
 	{
-		mlx_destroy_image(data->mlx_ptr, data->textures[i]);
+		if (data->textures[i] != NULL)
+			mlx_destroy_image(data->mlx_ptr, data->textures[i]);
 		i++;
 	}
 	free_map(data);
@@ -50,9 +51,7 @@ int	on_destroy(t_data *data, int exit_status)
 
 void	handle_error(int code, t_data *data)
 {
-	if (code == ERR_ARG)
-		ft_printf("Error: Not enough arguments.\n");
-	else if (code == ERR_EMPTY)
+	if (code == ERR_EMPTY)
 		ft_printf("Error: Map empty.\n");
 	else if (code == ERR_MAP_SIZE)
 		ft_printf("Error: Inconsistent row size.\n");
@@ -70,10 +69,8 @@ void	handle_error(int code, t_data *data)
 		ft_printf("Error: More than one player.\n");
 	else if (code == ERR_MULTI_E)
 		ft_printf("Error: More than one exit.\n");
-	else if (code == ERR_EXT)
-		ft_printf("Error: map extension invalid.\n");
-	else if (code == ERR_MAP_BIG)
-		ft_printf("Error: map exceeds window size.\n");
+	else if (code == ERR_NO_IMG)
+		ft_printf("Error: Images not accessible.\n");
 	on_destroy(data, 1);
 }
 

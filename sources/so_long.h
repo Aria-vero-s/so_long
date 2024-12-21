@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 21:56:20 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/12/21 17:48:45 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/12/21 18:13:58 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define ERR_NO_C 12
 # define ERR_EXT 13
 # define ERR_MAP_BIG 14
+# define ERR_NO_IMG 25
 # define KEY_W 119
 # define KEY_A 97
 # define KEY_S 115
@@ -88,6 +89,7 @@ void	display_image(t_data *data, int i, int x, int y);
 int		get_texture_index(char current_tile, t_data *data);
 void	render_map(t_data *data, char **map, int width, int height);
 void	handle_error(int code, t_data *data);
+void	handle_error2(int code, t_data *data);
 void	load_map(const char *filename, t_data *data);
 void	load_map_dimensions(int fd, t_data *data);
 void	initialize_grid(t_data *data, const char *filename);

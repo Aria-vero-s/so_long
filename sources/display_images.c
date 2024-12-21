@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:24:54 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/12/19 13:19:47 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/12/21 18:21:37 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	load_images(t_data *data)
 		data->textures[i]
 			= mlx_xpm_file_to_image(data->mlx_ptr, data->path[i], &w, &h);
 		if (data->textures[i] == NULL)
-			exit (1);
+			handle_error(ERR_NO_IMG, data);
 		i++;
 	}
 }
