@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:21:00 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/12/21 16:01:34 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/12/21 18:34:22 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	move_player(t_data *data, int new_x, int new_y)
 	else if (target == 'E')
 	{
 		if (data->collected_count == data->total_chests)
-			on_destroy(data, 0);
+			you_won(data);
 	}
 }
 
