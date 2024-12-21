@@ -6,7 +6,7 @@
 #    By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/23 11:10:18 by asaulnie          #+#    #+#              #
-#    Updated: 2024/12/19 14:21:57 by asaulnie         ###   ########.fr        #
+#    Updated: 2024/12/21 18:37:44 by asaulnie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ INCLUDES = -Imlx -Ilibft -Iget_next_line -I/usr/include
 
 LIBS = -L./mlx -lmlx -L./libft -lft -L/usr/lib/X11 -lXext -lX11
 
-SRCS = sources/so_long.c sources/check_arg.c sources/display_images.c sources/move_player.c sources/load_map.c sources/fill_map.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c ft_printf/ft_printf.c ft_printf/ft_itoa.c ft_printf/ft_strlen.c ft_printf/ft_itoa_base.c ft_printf/ft_printc.c ft_printf/ft_prints.c ft_printf/ft_printp.c ft_printf/ft_printd.c ft_printf/ft_printi.c ft_printf/ft_printu.c ft_printf/ft_printx.c ft_printf/ft_print88.c
+SRCS = sources/so_long.c sources/initial_checks.c sources/you_won.c sources/display_images.c sources/move_player.c sources/load_map.c sources/fill_map.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c ft_printf/ft_printf.c ft_printf/ft_itoa.c ft_printf/ft_strlen.c ft_printf/ft_itoa_base.c ft_printf/ft_printc.c ft_printf/ft_prints.c ft_printf/ft_printp.c ft_printf/ft_printd.c ft_printf/ft_printi.c ft_printf/ft_printu.c ft_printf/ft_printx.c ft_printf/ft_print88.c
 
 OBJS = $(SRCS:.c=.o)
 

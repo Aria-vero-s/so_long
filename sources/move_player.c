@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:21:00 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/12/21 18:34:22 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/12/21 18:41:29 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	render(t_data *data)
 	if (data->map.grid)
 		render_map(data, data->map.grid, data->map.width, data->map.height);
 	else
-		ft_printf("Map or grid is NULL!\n");
+		ft_printf("Map grid is NULL!\n");
 	return (0);
 }
 
