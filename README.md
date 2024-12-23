@@ -34,15 +34,8 @@ Clone the repository :
 git clone https://github.com/aria-vero-s/so_long.git
 ```
 
-Then, compile the **MiniLibX** library:
-
-```bash
-cd mlx
-make
-```
-
 ## Usage
-After cloning the repository and compiling the MLX library, you can compile and run the project with the provided Makefile.
+After cloning the repository, you can compile and run the project with the provided Makefile.
 
 ### Compiling the Program
 ```bash
