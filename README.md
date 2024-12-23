@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="so_long.png"/>
+  <img src="so_long.gif"/>
 </p>
 
 <h1 align="center">so_long</h1>
