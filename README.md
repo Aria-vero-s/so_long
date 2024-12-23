@@ -49,7 +49,12 @@ This will generate the `so_long` executable.
 ./so_long <map_file.ber>
 ```
 
-You need to provide a valid `.ber` map file for the game to load. The map should follow a specific structure, which will be documented later.
+example:
+```bash
+./so_long <maps/map_valid.ber>
+```
+
+You need to provide a valid `.ber` map file for the game to load (view existing maps in the maps folder or create your own). The map should follow a specific structure, which will be documented later.
 
 ## Makefile
 The Makefile is designed to simplify the compilation process. Here are the main rules:
